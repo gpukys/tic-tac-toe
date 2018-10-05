@@ -1,0 +1,130 @@
+
+body {
+    background-image: url('./assets/img/bg.jpg');
+    background-size: 1000px 1000px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+html, body, .main, .container {
+    height: 100%;
+    text-align: center;
+    padding: 0;
+}
+h1 {
+    height: 48px;
+}
+.buttons {
+    display: none;
+}
+.buttons.active {
+    height: 20%;
+    min-height: 100px;
+    display: block;
+}
+.board {
+    display: none;
+    height: 80%;
+    min-height: 100px;
+    max-width: 531px;
+    margin: 0 auto;
+}
+.board.row {
+    height: 150px;
+    width: 450px;
+    display: flex;
+}
+.board.active {
+    display: block;
+}
+.square {
+    width: 150px;
+    height: 100%;
+    background-color: transparent;
+    border: 3px solid #000;
+}
+.square.x:before {
+    position: relative;
+    left: 50%;
+    content: "";
+    display: block;
+    width: 1.5vmin;
+    height: 100%;
+    background-color: #10A0E1;
+    border-radius: 5px;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.square.x:after {
+    position: relative;
+    left: 50%;
+    bottom: 100%;
+    content: "";
+    display: block;
+    width: 1.5vmin;
+    height: 100%;
+    background-color: #10A0E1;
+    border-radius: 5px;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.square.o:before {
+    position: relative;
+    content: "";
+    display: block;
+    top: 8%;
+    left: 13%;
+    width: 140px;
+    width: 75%;
+    height: 120px;
+    height: 85%;
+    border: 8px solid #E110A0;
+    border: 1.5vmin solid #E110A0;
+    border-radius: 50%;
+}
+svg {
+    position: relative;
+    bottom: 3px;
+    right: 3px;
+}
+#quit {
+    display: none;
+}
+#quit.active{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+#again {
+    display: none;
+}
+#again.active{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+.line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+    animation: drawline 1s linear;
+}
+.line2 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+    animation: drawline 1s linear;
+    animation-delay: 1s;
+}
+#thinking {
+    position: relative;
+    top: -75%;
+    display: none;
+}
+@keyframes drawline {
+    from {
+        stroke-dashoffset: 1000;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}

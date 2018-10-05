@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            <div id="controls" class="controls active">
+                <h1>Tic-Tac-Toe!</h1>
+                <div class="buttons active">
+                    <button id="singleplayer" class="btn btn-primary">1 Player Game</button>
+                    <button id="multiplayer" class="btn btn-primary">2 Player Game</button>
+                </div>
+                <button id="quit" class="btn btn-primary">Quit</button>
+                <button id="again" class="btn btn-primary">Play Again</button>
+            </div>
+            <div id="board" class="board">
+                <div class="board row">
+                    <div id="0" class="square">
+                    </div>
+                    <div id="1" class="square">
+                    </div>
+                    <div id="2" class="square">
+                    </div>
+                </div>
+                <div class="board row">
+                    <div id="3" class="square"></div>
+                    <div id="4" class="square"></div>
+                    <div id="5" class="square"></div>
+                </div>
+                <div class="board row">
+                    <div id="6" class="square"></div>
+                    <div id="7" class="square"></div>
+                    <div id="8" class="square"></div>
+                </div>
+            </div>
+            <div id="thinking">
+                <img src="./assets/img/thinking.gif" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="Board.js"></script>
+<script src="Square.js"></script>
+<script src="AiPlayer.js"></script>
+<script src="Game.js"></script>
+<script src="ProgressRing.js"></script>
+<script src="Cross.js"></script>
+<script src="Main.js"></script>
