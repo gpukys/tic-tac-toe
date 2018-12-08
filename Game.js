@@ -5,7 +5,7 @@ class Game {
             this.timeout = '';
             this.canClick = true;
             this.board = new Board();
-            this.waitTime = 2000;s
+            this.waitTime = 2000;
             this.moves = 0;
             this.x = true; //this variable tracks whose turn it is
             if (this.mode === 'singleplayer') {
