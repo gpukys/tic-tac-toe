@@ -1,8 +1,6 @@
 class Board {
     constructor(mode) {
-        //Initialize the grid array
         this.grid = [];
-        //Populate the grid array with 9 Square objects
         for (var i = 0; i <= 8; i++) {
             this.grid.push(new Square(i));
         }
@@ -51,19 +49,19 @@ class Board {
     }
     /* ---- */
 
-    checkWinner() { //Algorithm to check if there's a winner
+    checkWinner() {
         for (var i = 0; i <= 2; i++) {
             if ((this.grid[i * 3].state && this.grid[i * 3].state === this.grid[i * 3 + 1].state) && (this.grid[i * 3].state && this.grid[i * 3].state === this.grid[i * 3 + 2].state)) {
-                return true; //check rows
+                return true;
             }
             if ((this.grid[i].state && this.grid[i].state === this.grid[i + 3].state) && (this.grid[i].state && this.grid[i].state === this.grid[i + 6].state)) {
-                return true; //check columns
+                return true;
             }
             if ((this.grid[0].state && this.grid[0].state === this.grid[4].state) && (this.grid[0].state && this.grid[0].state === this.grid[8].state)) {
-                return true; //check diagonal
+                return true;
             }
             if ((this.grid[2].state && this.grid[2].state === this.grid[4].state) && (this.grid[2].state && this.grid[2].state === this.grid[6].state)) {
-                return true; //check reverse diagonal
+                return true;
             }
         }
         return false;

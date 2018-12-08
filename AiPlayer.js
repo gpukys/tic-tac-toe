@@ -1,33 +1,31 @@
 class AiPlayer {
     constructor() {
-        this.aiMove = false; //variable to track if it's the AI's move
-        this.combination = ''; //this variable changes according to the situtation on the board
+        this.aiMove = false;
+        this.combination = '';
     }
-    /* Get and Set methods */
     getMove() {
         return this.aiMove
     }
     setMove(e) {
         this.aiMove = e;
     }
-    /* ------- */
 
-    getBoardStateX(board, id) { //checks if the selected Square object in the Board object is an x
+    getBoardStateX(board, id) {
         return board.grid[id].state === 'x';
     }
-    getBoardStateO(board, id) { //checks if the selected Square object in the Board object is an o
+    getBoardStateO(board, id) {
         return board.grid[id].state === 'o';
     }
     bestMove(board, move) { //tries to find the best move if the combination variable is not set
         if (move >= 5) { //the AI can only win if the current move is greater than 5. Checks if winning is possible on this turn
-            for (var i = 0; i < 9; i++) { //iterate through 9 Square objects
+            for (var i = 0; i < 9; i++) {
                 if (board.grid[i].state === '') { //find empty Square objects
                     board.grid[i].state = 'o'; //temporarily change the empty Square object's state to o
                     if (board.checkWinner()) { //check if o would win with that move
                         board.grid[i].state = ''; //reset the temporary value
                         return i; //return the best move (win the game)
                     }
-                    board.grid[i].state = ''; //reset the temporary value
+                    board.grid[i].state = '';
                 }
             }
         }
@@ -42,7 +40,7 @@ class AiPlayer {
             }
         }
         /* If there is no combination set, o can't win, x can't win, AI selects a random empty Square */
-        let moves = []; //initialize available moves array
+        let moves = [];
         for (var i = 0; i < 9; i++) { //populate moves array with empty Square indexes
             if (board.grid[i].state === '') {
                 moves.push(i);
@@ -51,34 +49,34 @@ class AiPlayer {
         return moves[Math.floor(Math.random() * moves.length)] //return a random move from the moves array
     }
     think(board, move) { //used to make the AI object select the best move 
-        if (move === 1) { //if the first move has been made
+        if (move === 1) {
             if (this.getBoardStateX(board, 4)) { //if the player starts at the center, select a random corner Square
                 let moves = [0, 2, 6, 8];
                 return moves[Math.round(Math.random() * 3)];
             }
-            if (this.getBoardStateX(board, 1)) { //if the player starts at the top middle Square, set the combination to try and win
+            if (this.getBoardStateX(board, 1)) {
                 this.combination = 'topattack';
                 return 2;
             }
-            if (this.getBoardStateX(board, 3)) { //if the player starts at the left middle Square, set the combination to try and win
+            if (this.getBoardStateX(board, 3)) {
                 this.combination = 'leftattack';
                 return 5;
             }
-            if (this.getBoardStateX(board, 5)) { //if the player starts at the right middle Square, set the combination to try and win
+            if (this.getBoardStateX(board, 5)) {
                 this.combination = 'rightattack';
                 return 8;
             }
-            if (this.getBoardStateX(board, 7)) { //if the player starts at the bottom middle Square, set the combination to try and win
+            if (this.getBoardStateX(board, 7)) {
                 this.combination = 'bottomattack';
                 return 8;
             }
-            else { //if the player selects anything else, select the center square 
+            else {
                 return 4;
             }
         }
-        if (move === 3) { //if the third move has been made
-            if (this.combination) { //if a combination has already been set, continue to try and win according to the user's input
-                if (this.combination === 'topattack') { //different outcomes depend on the users input
+        if (move === 3) {
+            if (this.combination) {
+                if (this.combination === 'topattack') {
                     if (this.getBoardStateX(board, 0)) {
                         this.combination = '';
                         return 5;
@@ -98,10 +96,10 @@ class AiPlayer {
                         this.combination = 'topattack2';
                         return 7;
                     }
-                    this.combination = ''; //reset the combination, there's no longer any need for it, bestMove() method will win or draw automatically
+                    this.combination = '';
                     return this.bestMove(board, move);
                 }
-                if (this.combination === 'leftattack') { //different outcomes depend on the users input
+                if (this.combination === 'leftattack') {
                     if (this.getBoardStateX(board, 0)) {
                         return 6;
                     }
@@ -128,7 +126,7 @@ class AiPlayer {
                     this.combination = '';
                     return this.bestMove(board, move);
                 }
-                if (this.combination === 'rightattack') { //different outcomes depend on the users input
+                if (this.combination === 'rightattack') {
                     if (this.getBoardStateX(board, 0)) {
                         return 3;
                     }
@@ -155,7 +153,7 @@ class AiPlayer {
                     this.combination = '';
                     return this.bestMove(board, move);
                 }
-                if (this.combination === 'bottomattack') { //different outcomes depend on the users input
+                if (this.combination === 'bottomattack') {
                     if (this.getBoardStateX(board, 0)) {
                         this.combination = '';
                         return 1;
@@ -179,12 +177,12 @@ class AiPlayer {
                     return this.bestMove(board, move);
                 }
             }
-            if (this.getBoardStateX(board, 4)) { //if a combination has not been set and x is in middle Square
-                if (this.getBoardStateO(board, 0)) { //checks if the user is attempting the double diagonal combination
+            if (this.getBoardStateX(board, 4)) { 
+                if (this.getBoardStateO(board, 0)) {
                     if (this.getBoardStateX(board, 8)) {
-                        this.combination = 'toprow'; //set the combination to defend against the user
+                        this.combination = 'toprow'; 
                         return 2;
-                    } else { //the user is not attempting the double diagonal combination
+                    } else {
                         return this.bestMove(board, move);
                     }
                 } else if (this.getBoardStateO(board, 2)) {
@@ -209,11 +207,11 @@ class AiPlayer {
                         return this.bestMove(board, move);
                     }
                 }
-            } else { //handle the single diagonal combination
+            } else {
                 if (this.getBoardStateX(board, 0)) {
-                    if (this.getBoardStateX(board, 8)) { //the user is attempting the single diagonal combination
-                        if (Math.floor(Math.random() * 2) === 1) { //choose 1 of 2 combinations randomly for variation
-                            this.combination = 'middefencelow'; //set the combination to defend against the user
+                    if (this.getBoardStateX(board, 8)) {
+                        if (Math.floor(Math.random() * 2) === 1) {
+                            this.combination = 'middefencelow';
                             return 7;
                         } else {
                             this.combination = 'middefencehigh';
@@ -225,7 +223,7 @@ class AiPlayer {
                     }
                 }
                 if (this.getBoardStateX(board, 2)) {
-                    if (this.getBoardStateX(board, 6)) { //the user is attempting the reverse single diagonal combination
+                    if (this.getBoardStateX(board, 6)) {
                         if (Math.floor(Math.random() * 2) === 1) {
                             this.combination = 'middefencelowreverse';
                             return 7;
@@ -237,13 +235,13 @@ class AiPlayer {
                     } else {
                         return this.bestMove(board, move);
                     }
-                } else { //the user is not attempting the single diagonal combination
+                } else {
                     return this.bestMove(board, move);
                 }
             }
         }
-        if (move === 5) { //if the fifth move has been made
-            if (this.combination) {  //if a combination has already been set, continue to try and win according to the user's input
+        if (move === 5) {
+            if (this.combination) {
                 if (this.combination === 'toprow') {
                     if (this.getBoardStateX(board, 1)) {
                         return 7;
@@ -295,7 +293,7 @@ class AiPlayer {
                     }
                 } else if (this.combination === 'topattack') {
                     if (this.getBoardStateX(board, 5)) {
-                        this.combination = ''; //combination is no longer needed, the AI will win or draw automatically
+                        this.combination = '';
                         return 4;
                     } else {
                         return 5;
@@ -440,12 +438,12 @@ class AiPlayer {
                         return this.bestMove(board, move);
                     }
                 }
-            } else { //if no combination is set on the 5th move, the AI will win or draw automatically
+            } else {
                 return this.bestMove(board, move)
             }
         }
-        if (move === 7) { //if the last move has been made
-            if (this.combination) { //if a combination has already been set, continue to try and win according to the user's input
+        if (move === 7) {
+            if (this.combination) {
                 if (this.combination === 'toprow') {
                     if (this.getBoardStateX(board, 3)) {
                         return 5;
@@ -514,7 +512,7 @@ class AiPlayer {
                         return 0;
                     }
                 }
-            } else { //if no combination is set on the 7th move, the AI will win or draw automatically
+            } else {
                 return this.bestMove(board, move);
             }
         }
