@@ -1,5 +1,5 @@
 # Tic-Tac-Toe
-Programų sistemų projektavimo 1 užduotis. PRif 16/1 Gerimantas Pukys
+Software architecture task.
 ## Kaip pasileisti?
-Clone repozitoriją, paleidžiame index.html per Chrome
-**PASTABA:** žaidimas veikia tik Chrome naršyklėje, dėl tam tikrų apribojimų
+Clone repository, launch index.html with Chrome
+**ATTENTION:** the game only works in Chrome browser correctly
